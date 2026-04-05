@@ -4,7 +4,7 @@ import math
 from collections import defaultdict, Counter
 
 # ── Load Person A's files ────────────────────────────────────
-with open("../person_a/vocab.json") as f:
+with open("../data/vocab.json") as f:
     vocab = json.load(f)
 
 with open("../person_a/counts.pkl", "rb") as f:
