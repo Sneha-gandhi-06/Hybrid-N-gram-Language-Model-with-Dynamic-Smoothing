@@ -57,7 +57,7 @@ fig, ax = plt.subplots(figsize=(8, 5))
 bars = ax.bar(names, scores, color=colors, width=0.5, edgecolor="white")
 
 ax.set_ylabel("Perplexity", fontsize=12)
-ax.set_title("Model comparison — lower is better", fontsize=13)
+ax.set_title("Model comparison", fontsize=13)
 ax.set_ylim(0, max(scores) * 1.3)
 ax.axhline(y=min(scores), linestyle="--", color="#888780", linewidth=1)
 ax.spines[["top", "right"]].set_visible(False)
