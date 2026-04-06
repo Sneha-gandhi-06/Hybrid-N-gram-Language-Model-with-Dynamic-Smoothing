@@ -7,7 +7,7 @@ from collections import defaultdict, Counter
 with open("data/vocab.json") as f:
     vocab = json.load(f)
 
-with open("../data/counts.pkl", "rb") as f:
+with open("data/counts.pkl", "rb") as f:
     data = pickle.load(f)
     uni_counts = data["unigram"]
     bi_counts  = data["bigram"]
