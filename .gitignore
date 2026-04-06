@@ -1,0 +1,6 @@
+# Ignore data files
+person_a/data/*.pkl
+
+# Ignore Python cache
+__pycache__/
+*.pyc
