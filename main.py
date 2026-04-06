@@ -1,13 +1,49 @@
-from src.data_loader import load_data
-from src.vocab import build_vocab, save_vocab
+import sys
+import os
+sys.path.insert(0, os.path.abspath("."))
 
-print("Loading data...")
-train, _, _ = load_data()
+from person_a.day1.src.data_loader import load_data
+from person_a.day1.src.tokenizer import tokenize
+from person_a.day2.src.counts import build_unigram, build_bigram, build_trigram
+from person_b.day3_b import get_prob, vocab, bi_counts, tri_counts, uni_counts
+from person_b.day4_b import compute_perplexity
+from person_b.day5_b import hybrid_get_prob, predict_next
 
-print("Building vocab...")
-vocab = build_vocab(train)
+def main():
+    print("=" * 50)
+    print(" Hybrid N-gram Language Model")
+    print("=" * 50)
 
-save_vocab(vocab)
+    # ── Load data ────────────────────────────────────────
+    print("\n[1/4] Loading data...")
+    train, val, test = load_data()
+    train = train[:3000]
+    val   = [t for t in val[:500]  if t.strip()]
+    test  = [t for t in test[:500] if t.strip()]
+    print(f"  Train: {len(train)} | Val: {len(val)} | Test: {len(test)}")
 
-print("DONE")
-print("Vocab size:", len(vocab))
+    # ── Evaluate ─────────────────────────────────────────
+    print("\n[2/4] Running evaluation...")
+    pp_static = compute_perplexity(val, get_prob,        order=3)
+    pp_hybrid = compute_perplexity(val, hybrid_get_prob, order=3)
+    pp_test   = compute_perplexity(test, hybrid_get_prob, order=3)
+
+    print(f"\n  Validation perplexity:")
+    print(f"    Static KN trigram : {pp_static:.2f}")
+    print(f"    Hybrid dynamic    : {pp_hybrid:.2f}")
+    print(f"\n  Test perplexity:")
+    print(f"    Hybrid dynamic    : {pp_test:.2f}")
+
+    # ── Demo ─────────────────────────────────────────────
+    print("\n[3/4] Next-word prediction demo...")
+    predict_next("the cat sat on the")
+    predict_next("in the united")
+    predict_next("he was looking at")
+
+    # ── Done ─────────────────────────────────────────────
+    print("\n[4/4] Done!")
+    print("  Charts are in person_b/")
+    print("=" * 50)
+
+if __name__ == "__main__":
+    main()
