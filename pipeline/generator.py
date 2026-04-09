@@ -8,7 +8,7 @@ def generate_next_word(current_word, bigram_probs):
     if not candidates:
         return None
 
-    # 🔥 pick word with highest probability
+    # picks word with highest probability
     next_word = max(candidates, key=candidates.get)
     return next_word
 

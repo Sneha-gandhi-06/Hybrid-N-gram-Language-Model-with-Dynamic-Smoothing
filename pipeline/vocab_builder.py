@@ -1,5 +1,5 @@
 from collections import Counter
-from person_a.day1.src.tokenizer import tokenize
+from pipeline.tokenizer import tokenize
 import json
 
 def build_vocab(texts):
@@ -13,5 +13,5 @@ def build_vocab(texts):
 
 
 def save_vocab(vocab):
-    with open("person_a/day1/data/vocab.json", "w") as f:
+    with open("data/vocab.json", "w") as f:
         json.dump(vocab, f)

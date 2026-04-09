@@ -1,6 +1,5 @@
 from collections import Counter
-from person_a.day1.src.tokenizer import tokenize
-
+from pipeline.tokenizer import tokenize
 
 def build_unigram(texts):
     counter = Counter()

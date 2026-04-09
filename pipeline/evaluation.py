@@ -1,6 +1,6 @@
 import math
-from person_a.day4.src.smoothing import get_bigram_prob
-from person_a.day1.src.tokenizer import tokenize
+from pipeline.smoothing_addk import get_bigram_prob
+from pipeline.tokenizer import tokenize
 
 
 def calculate_perplexity(texts, bigram_counts, unigram_counts, vocab_size):

@@ -2,12 +2,12 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath("."))
 
-from person_a.day1.src.data_loader import load_data
-from person_a.day1.src.tokenizer import tokenize
-from person_a.day2.src.counts import build_unigram, build_bigram, build_trigram
-from person_b.day3_b import get_prob, vocab, bi_counts, tri_counts, uni_counts
-from person_b.day4_b import compute_perplexity
-from person_b.day5_b import hybrid_get_prob, predict_next
+from pipeline.loader import load_data
+from pipeline.tokenizer import tokenize
+from pipeline.counts import build_unigram, build_bigram, build_trigram
+from smoothing.kneser_ney import get_prob, vocab, bi_counts, tri_counts, uni_counts
+from smoothing.perplexity import compute_perplexity
+from smoothing.switcher import hybrid_get_prob, predict_next
 
 def main():
     print("=" * 50)
@@ -40,9 +40,7 @@ def main():
     predict_next("in the united")
     predict_next("he was looking at")
 
-    # ── Done ─────────────────────────────────────────────
     print("\n[4/4] Done!")
-    print("  Charts are in person_b/")
     print("=" * 50)
 
 if __name__ == "__main__":
